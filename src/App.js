@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import MenuPage from "./pages/MenuPage";
+
+const publicRoutes = [
+  {
+    path: "/",
+    component: Homepage,
+  },
+];
+const privateRoutes = [
+  {
+    path: "/user",
+    component: MenuPage,
+  },
+];
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path={"/"} component={HomePage} />
+        <Route exact path={"/user"} component={MenuPage} />
+        <Redirect to="/" />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
