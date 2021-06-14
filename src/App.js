@@ -6,7 +6,7 @@ import MenuPage from "./pages/MenuPage";
 const publicRoutes = [
   {
     path: "/",
-    component: Homepage,
+    component: HomePage,
   },
 ];
 const privateRoutes = [
