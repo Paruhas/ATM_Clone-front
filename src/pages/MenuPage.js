@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 
 import UserHistory from "../components/MenuPage/UserHistory";
 import UserDeposit from "../components/MenuPage/UserDeposit";
+import UserWithdraw from "../components/MenuPage/UserWithdraw";
 
 const toTHBFormat = (n) => {
   return Intl.NumberFormat("th-TH", {
@@ -62,24 +63,7 @@ function MenuPage() {
       </div>
       {/* <UserHistory /> */}
       {/* <UserDeposit /> */}
-
-      <div className="user-content">
-        <div className="user-content-history">
-          <h1>WITHDRAW</h1>
-          <hr />
-          <div className="user-content-deposit-content">
-            <form>
-              <div className="user-content-withdraw-content-money-footer">
-                <div>
-                  <span>WITHDRAW MONEY</span>
-                  <input />
-                </div>
-                <button>WITHDRAW</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
+      {/* <UserWithdraw /> */}
 
       <div className="user-content">
         <div className="user-content-history">
@@ -90,11 +74,19 @@ function MenuPage() {
               <div className="user-content-transfer-content-footer">
                 <div>
                   <span>TRANSFER TO USER_ID</span>
-                  <input />
+                  <input
+                    type="text"
+                    placeholder="Insert userId"
+                    name="toUserId"
+                  />
                 </div>
                 <div>
                   <span>TRANSFER MONEY</span>
-                  <input />
+                  <input
+                    type="text"
+                    placeholder="Insert transfer money"
+                    name="transferValues"
+                  />
                 </div>
                 <button>TRANSFER</button>
               </div>
