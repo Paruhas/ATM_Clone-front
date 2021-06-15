@@ -1,0 +1,236 @@
+.user-navbar {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.user-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(228, 228, 228);
+  box-shadow: 0px 0px 5px black;
+  margin-bottom: 10px;
+}
+
+.user-detail-1 {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.user-menu {
+  padding: 5px;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  column-gap: 15px;
+}
+
+.user-menu-1 {
+  background-color: gray;
+  font-style: italic;
+  padding: 15px;
+  cursor: pointer;
+  width: 20%;
+  text-align: center;
+  font-weight: bolder;
+}
+.user-menu-1:hover {
+  color: red;
+}
+
+.user-menu-2 {
+  background-color: gray;
+  font-style: italic;
+  padding: 15px;
+  cursor: pointer;
+  width: 20%;
+  text-align: center;
+  font-weight: bolder;
+}
+.user-menu-2:hover {
+  color: red;
+}
+
+.user-menu-3 {
+  background-color: gray;
+  font-style: italic;
+  padding: 15px;
+  cursor: pointer;
+  width: 20%;
+  text-align: center;
+  font-weight: bolder;
+}
+.user-menu-3:hover {
+  color: red;
+}
+
+.user-menu-4 {
+  background-color: gray;
+  font-style: italic;
+  padding: 15px;
+  cursor: pointer;
+  width: 20%;
+  text-align: center;
+  font-weight: bolder;
+}
+.user-menu-4:hover {
+  color: red;
+}
+
+.user-menu-5 {
+  background-color: gray;
+  font-style: italic;
+  padding: 15px;
+  cursor: pointer;
+  width: 20%;
+  text-align: center;
+  font-weight: bolder;
+}
+.user-menu-5:hover {
+  color: red;
+}
+
+.user-content {
+  padding: 8px;
+}
+
+/* History */
+.user-content-history {
+  border: 1px solid black;
+  padding: 15px;
+  width: 100%;
+}
+
+.user-content-history-content {
+  padding: 15px;
+}
+
+.user-table-history {
+  width: 100%;
+}
+.user-table-history > tbody > tr > th {
+  background-color: black;
+  color: white;
+  padding: 10px;
+}
+.user-table-history > tbody > tr > td {
+  min-width: max-content;
+}
+
+.user-table-history-tr-2 > * {
+  border-bottom: 1px solid rgb(163, 163, 163);
+}
+
+@media only screen and (max-width: 700px) {
+  .user-detail-1 {
+    flex-direction: column;
+  }
+  .user-menu {
+    flex-direction: column;
+    row-gap: 10px;
+  }
+  .user-menu > * {
+    width: 100%;
+  }
+}
+
+/* DEPOSIT */
+.user-content-deposit-content {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-content-deposit-content > * {
+}
+
+.user-content-deposit-content-money {
+  display: flex;
+  flex-direction: row;
+  column-gap: 15px;
+}
+.user-content-deposit-content-money > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  column-gap: 15px;
+  width: 33%;
+  background-color: rgb(204, 204, 204);
+  padding: 15px;
+  align-items: center;
+}
+.user-content-deposit-content-money > div > input {
+  padding: 15px;
+}
+
+.user-content-deposit-content-money-footer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  align-items: center;
+  margin-top: 15px;
+  padding: 15px;
+  background-color: rgb(204, 204, 204);
+}
+.user-content-deposit-content-money-footer > button {
+  padding: 15px;
+  cursor: pointer;
+}
+
+/* WITHDRAW */
+.user-content-withdraw-content-money-footer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  align-items: center;
+  margin-top: 15px;
+  padding: 15px;
+  background-color: rgb(204, 204, 204);
+}
+.user-content-withdraw-content-money-footer > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 15px;
+}
+.user-content-withdraw-content-money-footer > div > input {
+  padding: 15px;
+}
+.user-content-withdraw-content-money-footer > button {
+  padding: 15px;
+  cursor: pointer;
+}
+
+/* TRANSFER */
+.user-content-transfer-content {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  align-items: center;
+  margin-top: 15px;
+  padding: 15px;
+  background-color: rgb(204, 204, 204);
+}
+
+.user-content-transfer-content-footer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+}
+.user-content-transfer-content-footer > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 15px;
+}
+.user-content-transfer-content-footer > div > input {
+  padding: 15px;
+}
+.user-content-transfer-content-footer > button {
+  padding: 15px;
+  cursor: pointer;
+}
