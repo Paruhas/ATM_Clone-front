@@ -3,7 +3,8 @@ import axios from "../configs/axios";
 import { removeToken } from "../services/localStorageService";
 import { AuthContext } from "../contexts/AuthContext";
 import "./MenuPage.css";
-import moment from "moment";
+
+import UserHistory from "../components/MenuPage/userHistory";
 
 const toTHBFormat = (n) => {
   return Intl.NumberFormat("th-TH", {
@@ -13,13 +14,11 @@ const toTHBFormat = (n) => {
 
 function MenuPage() {
   const [userProfile, setUserProfile] = useState([]);
-  const [userTransaction, setUserTransaction] = useState([]);
 
   const { setIsAuthenticated } = useContext(AuthContext);
 
   useEffect(() => {
     getMe();
-    getMyTransaction();
   }, []);
 
   const getMe = async () => {
@@ -31,13 +30,20 @@ function MenuPage() {
     }
   };
 
-  const getMyTransaction = async () => {
-    try {
-      const myTransactionRes = await axios.get("/transaction/user");
-      setUserTransaction(myTransactionRes.data.userTransaction);
-    } catch (error) {
-      console.log(error);
-    }
+  // DEPOSIT
+  const [deposit1000, setDeposit1000] = useState(0);
+  const [deposit500, setDeposit500] = useState(0);
+  const [deposit100, setDeposit100] = useState(0);
+
+  const handler1000Change = (event) => {
+    setDeposit1000(event.target.value);
+  };
+
+  const handler500Change = (event) => {
+    setDeposit500(event.target.value);
+  };
+  const handler100Change = (event) => {
+    setDeposit100(event.target.value);
   };
 
   return (
@@ -68,46 +74,7 @@ function MenuPage() {
           </div>
         </div>
       </div>
-      <div className="user-content">
-        <div className="user-content-history">
-          <h1>HISTORY</h1>
-          <hr />
-          <div className="user-content-history-content">
-            <table className="user-table-history">
-              <tbody>
-                <tr>
-                  <th width="12%">date</th>
-                  <th width="20%">transaction</th>
-                  <th width="17%">-</th>
-                  <th width="17%">+</th>
-                  <th width="17%">balance</th>
-                  <th width="17%"></th>
-                </tr>
-                {userTransaction.map((item, index) => {
-                  return (
-                    <tr className="user-table-history-tr-2" key={item.id}>
-                      <td>{item.createdAt}</td>
-                      <td>{item.transactionType}</td>
-                      <td>
-                        {item.decrease === null
-                          ? " "
-                          : toTHBFormat(item.decrease)}
-                      </td>
-                      <td>
-                        {item.increase === null
-                          ? " "
-                          : toTHBFormat(item.increase)}
-                      </td>
-                      <td>{toTHBFormat(item.balance)}</td>
-                      <td>{item.description}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+      {/* <UserHistory /> */}
 
       <div className="user-content">
         <div className="user-content-history">
@@ -126,6 +93,8 @@ function MenuPage() {
                     onKeyDown={(e) => {
                       e.preventDefault();
                     }}
+                    defaultValue={deposit1000}
+                    onChange={handler1000Change}
                   />
                 </div>
                 <div>
@@ -137,6 +106,8 @@ function MenuPage() {
                     onKeyDown={(e) => {
                       e.preventDefault();
                     }}
+                    defaultValue={deposit500}
+                    onChange={handler500Change}
                   />
                 </div>
                 <div>
@@ -148,6 +119,8 @@ function MenuPage() {
                     onKeyDown={(e) => {
                       e.preventDefault();
                     }}
+                    defaultValue={deposit100}
+                    onChange={handler100Change}
                   />
                 </div>
               </div>
