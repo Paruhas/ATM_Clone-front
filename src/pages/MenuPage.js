@@ -1,15 +1,55 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import axios from "../configs/axios";
+import { removeToken } from "../services/localStorageService";
+import { AuthContext } from "../contexts/AuthContext";
 import "./MenuPage.css";
+import moment from "moment";
+
+const toTHBFormat = (n) => {
+  return Intl.NumberFormat("th-TH", {
+    currency: "THB",
+  }).format(n);
+};
 
 function MenuPage() {
+  const [userProfile, setUserProfile] = useState([]);
+  const [userTransaction, setUserTransaction] = useState([]);
+
+  const { setIsAuthenticated } = useContext(AuthContext);
+
+  useEffect(() => {
+    getMe();
+    getMyTransaction();
+  }, []);
+
+  const getMe = async () => {
+    try {
+      const meRes = await axios.get("/user/me");
+      setUserProfile(meRes.data.user);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getMyTransaction = async () => {
+    try {
+      const myTransactionRes = await axios.get("/transaction/user");
+      setUserTransaction(myTransactionRes.data.userTransaction);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <div className="user-navbar">
         <div className="user-detail">
-          <h1>WELCOME "user_username"</h1>
+          <h1>WELCOME "{userProfile.username}"</h1>
           <div className="user-detail-1">
-            <h2>Your ID is "user_id"</h2>
-            <h2>Your Balance "user_balance"</h2>
+            <h2>Your ID is "{userProfile.id}"</h2>
+            <h2>
+              Your Balance "{toTHBFormat(userProfile.currentBalance)}" BATH
+            </h2>
           </div>
         </div>
         <div className="user-menu">
@@ -17,7 +57,15 @@ function MenuPage() {
           <div className="user-menu-2">DEPOSIT</div>
           <div className="user-menu-3">WITHDRAW</div>
           <div className="user-menu-4">TRANSFER</div>
-          <div className="user-menu-5">QUIT</div>
+          <div
+            className="user-menu-5"
+            onClick={() => {
+              removeToken("token");
+              setIsAuthenticated(false);
+            }}
+          >
+            QUIT
+          </div>
         </div>
       </div>
       <div className="user-content">
@@ -35,24 +83,26 @@ function MenuPage() {
                   <th width="17%">balance</th>
                   <th width="17%"></th>
                 </tr>
-                <tr className="user-table-history-tr-2">
-                  <td>01/06/2021 17:56:30</td>
-                  <td>ฝาก</td>
-                  <td>5,000.00</td>
-                  <td>5,000.00</td>
-                  <td>6,801.02</td>
-                  <td>ธนาคารทางโทรศัพท์มือถือ KMP22965</td>
-                  <td></td>
-                </tr>
-                <tr className="user-table-history-tr-2">
-                  <td>01/06/2021 17:56:30</td>
-                  <td>ฝาก</td>
-                  <td>5,000.00</td>
-                  <td>5,000.00</td>
-                  <td>6,801.02</td>
-                  <td>ธนาคารทางโทรศัพท์มือถือ KMP22965</td>
-                  <td></td>
-                </tr>
+                {userTransaction.map((item, index) => {
+                  return (
+                    <tr className="user-table-history-tr-2" key={item.id}>
+                      <td>{item.createdAt}</td>
+                      <td>{item.transactionType}</td>
+                      <td>
+                        {item.decrease === null
+                          ? " "
+                          : toTHBFormat(item.decrease)}
+                      </td>
+                      <td>
+                        {item.increase === null
+                          ? " "
+                          : toTHBFormat(item.increase)}
+                      </td>
+                      <td>{toTHBFormat(item.balance)}</td>
+                      <td>{item.description}</td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
