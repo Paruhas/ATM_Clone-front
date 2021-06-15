@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./HomePage.css";
 
 function HomePage() {
+  const [input, setInput] = useState({});
+
   return (
     <div className="homepage-content">
       <div className="login-box">
