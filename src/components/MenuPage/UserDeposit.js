@@ -114,7 +114,8 @@ function userDeposit() {
                 Total deposit money:{" "}
                 {toTHBFormat(
                   1000 * +deposit1000 + 500 * +deposit500 + 100 * +deposit100
-                )}
+                )}{" "}
+                BATH
               </h3>
               <button onClick={handlerSubmitDeposit}>DEPOSIT</button>
             </div>

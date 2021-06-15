@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import UserHistory from "../components/MenuPage/UserHistory";
 import UserDeposit from "../components/MenuPage/UserDeposit";
 import UserWithdraw from "../components/MenuPage/UserWithdraw";
+import UserTransfer from "../components/MenuPage/UserTransfer";
 
 const toTHBFormat = (n) => {
   return Intl.NumberFormat("th-TH", {
@@ -17,6 +18,12 @@ const toTHBFormat = (n) => {
 
 function MenuPage() {
   const [userProfile, setUserProfile] = useState([]);
+  const [renderMenu, setRenderMenu] = useState({
+    renderHISTORY: false,
+    renderDEPOSIT: false,
+    renderWITHDRAW: false,
+    renderTRANSFER: false,
+  });
 
   const { setIsAuthenticated } = useContext(AuthContext);
 
@@ -33,6 +40,23 @@ function MenuPage() {
     }
   };
 
+  const handlerLogout = async () => {
+    const isLogout = await Swal.fire({
+      icon: "question",
+      title: "You want to logout?",
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+    });
+
+    if (isLogout.isConfirmed === true) {
+      removeToken("token");
+      setIsAuthenticated(false);
+    }
+  };
+
   return (
     <>
       <div className="user-navbar">
@@ -46,54 +70,69 @@ function MenuPage() {
           </div>
         </div>
         <div className="user-menu">
-          <div className="user-menu-1">HISTORY</div>
-          <div className="user-menu-2">DEPOSIT</div>
-          <div className="user-menu-3">WITHDRAW</div>
-          <div className="user-menu-4">TRANSFER</div>
           <div
-            className="user-menu-5"
-            onClick={() => {
-              removeToken("token");
-              setIsAuthenticated(false);
-            }}
+            className="user-menu-1"
+            onClick={() =>
+              setRenderMenu({
+                renderHISTORY: true,
+                renderDEPOSIT: false,
+                renderWITHDRAW: false,
+                renderTRANSFER: false,
+              })
+            }
           >
+            HISTORY
+          </div>
+          <div
+            className="user-menu-2"
+            onClick={() =>
+              setRenderMenu({
+                renderHISTORY: false,
+                renderDEPOSIT: true,
+                renderWITHDRAW: false,
+                renderTRANSFER: false,
+              })
+            }
+          >
+            DEPOSIT
+          </div>
+          <div
+            className="user-menu-3"
+            onClick={() =>
+              setRenderMenu({
+                renderHISTORY: false,
+                renderDEPOSIT: false,
+                renderWITHDRAW: true,
+                renderTRANSFER: false,
+              })
+            }
+          >
+            WITHDRAW
+          </div>
+          <div
+            className="user-menu-4"
+            onClick={() =>
+              setRenderMenu({
+                renderHISTORY: false,
+                renderDEPOSIT: false,
+                renderWITHDRAW: false,
+                renderTRANSFER: true,
+              })
+            }
+          >
+            TRANSFER
+          </div>
+          <div className="user-menu-5" onClick={handlerLogout}>
             QUIT
           </div>
         </div>
       </div>
-      {/* <UserHistory /> */}
-      {/* <UserDeposit /> */}
-      {/* <UserWithdraw /> */}
-
-      <div className="user-content">
-        <div className="user-content-history">
-          <h1>TRANSFER</h1>
-          <hr />
-          <div className="user-content-transfer-content">
-            <form>
-              <div className="user-content-transfer-content-footer">
-                <div>
-                  <span>TRANSFER TO USER_ID</span>
-                  <input
-                    type="text"
-                    placeholder="Insert userId"
-                    name="toUserId"
-                  />
-                </div>
-                <div>
-                  <span>TRANSFER MONEY</span>
-                  <input
-                    type="text"
-                    placeholder="Insert transfer money"
-                    name="transferValues"
-                  />
-                </div>
-                <button>TRANSFER</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
+      {renderMenu.renderHISTORY && <UserHistory getMe={getMe} />}
+      {renderMenu.renderDEPOSIT && <UserDeposit getMe={getMe} />}
+      {renderMenu.renderWITHDRAW && <UserWithdraw getMe={getMe} />}
+      {renderMenu.renderTRANSFER && (
+        <UserTransfer getMe={getMe} userProfile={userProfile} />
+      )}
     </>
   );
 }

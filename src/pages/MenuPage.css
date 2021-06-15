@@ -107,6 +107,7 @@
 
 .user-content-history-content {
   padding: 15px;
+  margin-top: 10px;
 }
 
 .user-table-history {
@@ -141,6 +142,7 @@
 /* DEPOSIT */
 .user-content-deposit-content {
   padding: 15px;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
 }
@@ -187,7 +189,6 @@
   flex-direction: column;
   row-gap: 15px;
   align-items: center;
-  margin-top: 15px;
   padding: 15px;
   background-color: rgb(204, 204, 204);
 }
@@ -211,7 +212,7 @@
   flex-direction: column;
   row-gap: 15px;
   align-items: center;
-  margin-top: 15px;
+  margin: 25px 15px 15px 15px;
   padding: 15px;
   background-color: rgb(204, 204, 204);
 }

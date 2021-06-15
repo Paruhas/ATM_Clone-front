@@ -38,6 +38,7 @@ function UserWithdraw() {
       document.getElementById("withdraw").value = "";
     } catch (error) {
       console.log(error);
+      document.getElementById("withdraw").value = "";
     }
   };
 
