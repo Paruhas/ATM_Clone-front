@@ -80,6 +80,9 @@ function MenuPage() {
                 renderTRANSFER: false,
               })
             }
+            style={
+              renderMenu.renderHISTORY ? { textDecoration: "underline" } : {}
+            }
           >
             HISTORY
           </div>
@@ -92,6 +95,9 @@ function MenuPage() {
                 renderWITHDRAW: false,
                 renderTRANSFER: false,
               })
+            }
+            style={
+              renderMenu.renderDEPOSIT ? { textDecoration: "underline" } : {}
             }
           >
             DEPOSIT
@@ -106,6 +112,9 @@ function MenuPage() {
                 renderTRANSFER: false,
               })
             }
+            style={
+              renderMenu.renderWITHDRAW ? { textDecoration: "underline" } : {}
+            }
           >
             WITHDRAW
           </div>
@@ -118,6 +127,9 @@ function MenuPage() {
                 renderWITHDRAW: false,
                 renderTRANSFER: true,
               })
+            }
+            style={
+              renderMenu.renderTRANSFER ? { textDecoration: "underline" } : {}
             }
           >
             TRANSFER
