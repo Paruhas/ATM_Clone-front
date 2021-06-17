@@ -63,7 +63,7 @@ function UserTransfer(props) {
       document.getElementById("toUserId").value = "";
       document.getElementById("transferValues").value = "";
     } catch (error) {
-      console.log(error);
+      console.dir(error);
       document.getElementById("toUserId").value = "";
       document.getElementById("transferValues").value = "";
     }

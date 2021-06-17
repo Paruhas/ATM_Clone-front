@@ -8,7 +8,7 @@ const toTHBFormat = (n) => {
   }).format(n);
 };
 
-function userDeposit() {
+function userDeposit(props) {
   const [deposit1000, setDeposit1000] = useState(0);
   const [deposit500, setDeposit500] = useState(0);
   const [deposit100, setDeposit100] = useState(0);
@@ -48,6 +48,8 @@ function userDeposit() {
         title: depositRes.data.message,
         text: `deposit value: ${toTHBFormat(+depositRes.data.deposits)} BATH`,
       });
+
+      props.getMe();
 
       setDeposit1000(0);
       setDeposit500(0);
