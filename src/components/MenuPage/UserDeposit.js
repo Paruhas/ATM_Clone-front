@@ -8,7 +8,7 @@ const toTHBFormat = (n) => {
   }).format(n);
 };
 
-function userDeposit(props) {
+function UserDeposit(props) {
   const [deposit1000, setDeposit1000] = useState(0);
   const [deposit500, setDeposit500] = useState(0);
   const [deposit100, setDeposit100] = useState(0);
@@ -128,4 +128,4 @@ function userDeposit(props) {
   );
 }
 
-export default userDeposit;
+export default UserDeposit;
